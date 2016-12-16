@@ -1,0 +1,26 @@
+# makefile for nmake
+
+#
+#set INCLUDE=%INCLUDE%;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include;
+#
+!include <win32.mak>
+
+####### Files
+srcs = mongooserver.c mongoose.c
+objs = $(srcs:.c=.obj)
+exe  = mongooserver.exe
+
+
+.PHONY: all
+
+all: $(exe)
+
+.c.obj:
+	$(cc) $(cdebug) $(cflags) $(cvars) $*.c
+
+$(exe): $(objs)
+	$(link) $(ldebug) $(conflags) /out:$(@) $** $(conlibs)
+
+clean:
+	del /q $(exe)
+	del /q $(objs)
