@@ -2,41 +2,45 @@
 #
 #
 
-# project name (generate executable with this name)
-TARGET   = mongooserver
-
-CC       = gcc
+CC      = gcc
+CXX     = g++
 
 # compiling flags here
-CFLAGS   = -std=c99 -Wall -I.
+CFLAGS 	+= -std=c99 -ansi
+CFLAGS 	+= -O2 -Wall -g -ansi
+CFLAGS 	+= -fomit-frame-pointer
+CFLAGS 	+= -I.
 
-LINKER   = gcc -o
+LINKER  = gcc -o
 
 # linking flags here
-LFLAGS   = -Wall -I. -lm
+LFLAGS  = -Wall -I. -lm
+
+# project name (generate executable with this name)
+BIN   	= mongooserver
 
 # change these to proper directories where each file should be
-SRCDIR   = .
-OBJDIR   = .
-BINDIR   = .
+SRCDIR 	= .
+OBJDIR  = .
+BINDIR  = .
 
-SOURCES  := $(wildcard $(SRCDIR)/*.c)
-INCLUDES := $(wildcard $(SRCDIR)/*.h)
-OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+SRCS  := $(wildcard $(SRCDIR)/*.c)
+OBJS  := $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 
-$(BINDIR)/$(TARGET): $(OBJECTS)
-	@$(LINKER) $@ $(LFLAGS) $(OBJECTS)
+$(BINDIR)/$(BIN): $(OBJS)
+	@echo Linking ... $<
+	@$(LINKER) $@ $(LFLAGS) $(OBJS)
 	@echo "Linking complete!"
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
+	@echo Compiling ... $<
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Compiled "$<" successfully!"
 
 .PHONY: clean
 clean:
-	@$(RM) $(OBJECTS)
-	@$(RM) $(BINDIR)/$(TARGET)
+	@$(RM) $(OBJS)
+	@$(RM) $(BINDIR)/$(BIN)
 	@echo "Cleanup complete!"
 
 ###___END___
