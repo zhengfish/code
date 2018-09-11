@@ -17,6 +17,9 @@ msbuild lib/libfilezilla.vcxproj /t:Build /p:Configuration=static_release;Platfo
 
 @echo build filezillaserver.exe
 cd /d %~dp0
+cd filezillaserver
+msbuild filezillaserver.vcxproj /t:Build /p:Configuration=release;Platform=Win32
 
+cd /d %~dp0
 
 ::___END___
