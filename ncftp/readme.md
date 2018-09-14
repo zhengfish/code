@@ -1,5 +1,5 @@
 
-[WIKI]
+# WIKI
 NcFTP
 From Wikipedia, the free encyclopedia
 
@@ -9,5 +9,5 @@ NcFTP is a command-line user interface program, and runs on a large number of pl
 
 The program often provided a user's first exposure to features such as bookmarks, automatic use of binary transfers, dynamic progress meters, automatic anonymous logons, recursive downloading, resumption of failed downloads, "redialing" unresponsive hosts, use of passive transfers, and tips at start up.
 
-[VERSION]
+# VERSION
 ftp://ftp.ncftp.com/libncftp/libncftp-3.2.6-src.tar.xz
