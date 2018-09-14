@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F5B2B45E-FF65-4453-B973-9A7F629EF1F0}</ProjectGuid>
+    <RootNamespace>LibNcFTP</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+    <CodeAnalysisRuleAssemblies />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+    <CodeAnalysisRuleAssemblies />
+    <IncludePath>..\sio;..\Strn;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat />
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)libncftp.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat />
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)libncftp.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="c_chdir.c" />
+    <ClCompile Include="c_chdir3.c" />
+    <ClCompile Include="c_chdirlist.c" />
+    <ClCompile Include="c_chmod.c" />
+    <ClCompile Include="c_delete.c" />
+    <ClCompile Include="c_exists.c" />
+    <ClCompile Include="c_filetype.c" />
+    <ClCompile Include="c_getcwd.c" />
+    <ClCompile Include="c_mkdir.c" />
+    <ClCompile Include="c_mlist1.c" />
+    <ClCompile Include="c_modtime.c" />
+    <ClCompile Include="c_opennologin.c" />
+    <ClCompile Include="c_rename.c" />
+    <ClCompile Include="c_rhelp.c" />
+    <ClCompile Include="c_rmdir.c" />
+    <ClCompile Include="c_rmdirr.c" />
+    <ClCompile Include="c_size.c" />
+    <ClCompile Include="c_sizemdtm.c" />
+    <ClCompile Include="c_symlink.c" />
+    <ClCompile Include="c_type.c" />
+    <ClCompile Include="c_umask.c" />
+    <ClCompile Include="c_utime.c" />
+    <ClCompile Include="errno.c" />
+    <ClCompile Include="ftp.c" />
+    <ClCompile Include="ftw.c" />
+    <ClCompile Include="io_get.c" />
+    <ClCompile Include="io_getfiles.c" />
+    <ClCompile Include="io_getmem.c" />
+    <ClCompile Include="io_getonefile.c" />
+    <ClCompile Include="io_gettar.c" />
+    <ClCompile Include="io_list.c" />
+    <ClCompile Include="io_listmem.c" />
+    <ClCompile Include="io_put.c" />
+    <ClCompile Include="io_putfiles.c" />
+    <ClCompile Include="io_putmem.c" />
+    <ClCompile Include="io_putonefile.c" />
+    <ClCompile Include="io_sendfile.c" />
+    <ClCompile Include="io_util.c" />
+    <ClCompile Include="lglob.c" />
+    <ClCompile Include="lglobr.c" />
+    <ClCompile Include="linelist.c" />
+    <ClCompile Include="open.c" />
+    <ClCompile Include="rcmd.c" />
+    <ClCompile Include="rftw.c" />
+    <ClCompile Include="rglob.c" />
+    <ClCompile Include="rglobr.c" />
+    <ClCompile Include="unls.c" />
+    <ClCompile Include="util2.cpp" />
+    <ClCompile Include="u_close.c" />
+    <ClCompile Include="u_decodehost.c" />
+    <ClCompile Include="u_decodeurl.c" />
+    <ClCompile Include="u_error.c" />
+    <ClCompile Include="u_feat.c" />
+    <ClCompile Include="u_fileextn.c" />
+    <ClCompile Include="u_getcwd.c" />
+    <ClCompile Include="u_gethome.c" />
+    <ClCompile Include="u_getopt.c" />
+    <ClCompile Include="u_getpass.c" />
+    <ClCompile Include="u_getpw.c" />
+    <ClCompile Include="u_getusr.c" />
+    <ClCompile Include="u_getutc.c" />
+    <ClCompile Include="u_gmtime.c" />
+    <ClCompile Include="u_localtime.c" />
+    <ClCompile Include="u_misc.c" />
+    <ClCompile Include="u_miscdebug.c" />
+    <ClCompile Include="u_mkdirs.c" />
+    <ClCompile Include="u_pathcat.c" />
+    <ClCompile Include="u_printf.c" />
+    <ClCompile Include="u_rebuildci.c" />
+    <ClCompile Include="u_scram.c" />
+    <ClCompile Include="u_shutdownci.c" />
+    <ClCompile Include="u_signal.c" />
+    <ClCompile Include="u_slash.c" />
+    <ClCompile Include="u_unmdtm.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ftp.h" />
+    <ClInclude Include="io_sendfile.h" />
+    <ClInclude Include="ncftp.h" />
+    <ClInclude Include="ncftp_errno.h" />
+    <ClInclude Include="syshdrs.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="wincfg.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sio\sio.vcxproj">
+      <Project>{7c559ef2-3b28-4968-9d33-2d77a153d3f7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\Strn\Strn.vcxproj">
+      <Project>{8ca02427-5921-4678-b1cd-1b81ec4a60d0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
