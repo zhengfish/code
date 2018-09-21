@@ -7,10 +7,10 @@
 #define AFX_STDAFX_H__90B2E463_9E2C_482D_8FDF_4C043468AC9E__INCLUDED_
 
 // Change these values to use different versions
-#define WINVER        0x0400
-//#define _WIN32_WINNT    0x0400
-#define _WIN32_IE    0x0400
-#define _RICHEDIT_VER    0x0100
+#define WINVER          0x0600
+//#define _WIN32_WINNT  0x0400
+#define _WIN32_IE       0x0600
+#define _RICHEDIT_VER   0x0300
 #include <atlbase.h>
 #if (_ATL_VER >= 0x0700)
 #include <atlstr.h>
