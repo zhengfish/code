@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2E33B7BD-C1FB-44CC-96EF-8482B4091ED0}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>Debug\</OutDir>
+    <IntDir>Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>Release\</OutDir>
+    <IntDir>Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_MT;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>msvcrtd.lib;libcmtd.lib;oldnames.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)indiftpd.exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)indiftpd.pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapExports>true</MapExports>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_MT;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>msvcrt.lib;libcmt.lib;oldnames.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)indiftpd.exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\core\BlowfishCrypt.cpp" />
+    <ClCompile Include="..\core\CmdLine.cpp" />
+    <ClCompile Include="..\core\Crypto.cpp" />
+    <ClCompile Include="..\core\Dll.cpp" />
+    <ClCompile Include="..\core\FSUtils.cpp" />
+    <ClCompile Include="..\core\Ftps.cpp" />
+    <ClCompile Include="..\core\FtpsXfer.cpp" />
+    <ClCompile Include="..\core\Log.cpp" />
+    <ClCompile Include="..\core\Service.cpp" />
+    <ClCompile Include="..\core\SiteInfo.cpp" />
+    <ClCompile Include="..\core\Sock.cpp" />
+    <ClCompile Include="..\core\SSLSock.cpp" />
+    <ClCompile Include="..\core\StrUtils.cpp" />
+    <ClCompile Include="..\core\Termcli.cpp" />
+    <ClCompile Include="..\core\Termsrv.cpp" />
+    <ClCompile Include="..\core\Thr.cpp" />
+    <ClCompile Include="..\core\Timer.cpp" />
+    <ClCompile Include="IndiFileUtils.cpp" />
+    <ClCompile Include="IndiFtps.cpp" />
+    <ClCompile Include="indimain.cpp" />
+    <ClCompile Include="IndiSiteInfo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\core\BlowfishCrypt.h" />
+    <ClInclude Include="..\core\CmdLine.h" />
+    <ClInclude Include="..\core\Crypto.h" />
+    <ClInclude Include="..\core\Dll.h" />
+    <ClInclude Include="..\core\FSUtils.h" />
+    <ClInclude Include="..\core\Ftps.h" />
+    <ClInclude Include="..\core\FtpsXfer.h" />
+    <ClInclude Include="..\core\Log.h" />
+    <ClInclude Include="..\core\Service.h" />
+    <ClInclude Include="..\core\SiteInfo.h" />
+    <ClInclude Include="..\core\Sock.h" />
+    <ClInclude Include="..\core\SSLSock.h" />
+    <ClInclude Include="..\core\StrUtils.h" />
+    <ClInclude Include="..\core\Termcli.h" />
+    <ClInclude Include="..\core\Termsrv.h" />
+    <ClInclude Include="..\core\Thr.h" />
+    <ClInclude Include="..\core\Timer.h" />
+    <ClInclude Include="IndiFileUtils.h" />
+    <ClInclude Include="IndiFtps.h" />
+    <ClInclude Include="IndiSiteInfo.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
