@@ -1,0 +1,120 @@
+###############################################################################
+## Makefile for IndiFTPD
+##
+## Usage: make platform=<linux|solaris|freebsd> [opensslroot=PATH]
+##
+## Example1: make platform=linux
+## Example2: make platform=solaris opensslroot=../../openssl-0.9.6l
+##
+## NOTE: If "opensslroot" is not specified SSL will not be compiled into
+##       the server.  The core server is currently only compatible with
+##       OpenSSL 0.9.6x (not 0.9.7x).  To use SSL you must first build
+##       the OpenSSL libraries.
+## 
+###############################################################################
+
+# The compiler to be used
+CC = gcc
+
+# Target file name (without extension).
+TARGET = indiftpd
+
+# Set the platform parameters
+# NOTE: The library options below may create dependencies on certain shared
+#       objects (Ex. libstdc++.so.5).  To avoid these dependencies the static
+#       libraries should be included instead (Ex. replace -lstdc++ with
+#       /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/libstdc++.a)
+# Initialize
+BUILDPLATFORM = NONE
+# Linux parameters
+ifeq ($(platform),linux)
+  BUILDPLATFORM = LINUX
+  LIBSTDC = /usr/lib/libc.a
+  LIBSTDCPP = /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/libstdc++.a 
+  LIBPTHR = /usr/lib/libpthread.a
+  LDFLAGS = $(LIBPTHR) $(LIBSTDC) $(LIBSTDCPP)
+endif
+# Solaris parameters
+ifeq ($(platform),solaris)
+  BUILDPLATFORM = SOLARIS
+  LIBSTDCPP = -lstdc++
+  LIBPTHR = -lpthread
+  LDFLAGS = -lnsl -lsocket $(LIBPTHR) $(LIBSTDCPP)
+endif
+# FreeBSD parameters
+ifeq ($(platform),freebsd)
+  BUILDPLATFORM = BSD
+  LIBSTDC = -lc
+  LIBPTHR = -lpthread
+  LDFLAGS = $(LIBPTHR) $(LIBSTDC) -lcompat
+endif
+
+# Set the compiler options
+CFLAGS = -O2 -pedantic -Wall -Wstrict-prototypes -fno-builtin -D$(BUILDPLATFORM)
+
+# Enable SSL if the user specified "opensslroot=PATH"
+ifdef opensslroot
+  CFLAGS += -DENABLE_SSL -I$(opensslroot)/include
+  LDFLAGS += $(opensslroot)/libssl.a $(opensslroot)/libcrypto.a
+endif
+
+
+# List C++ source files here. (C++ dependencies are automatically generated.)
+# Core source files
+FILESCORE = BlowfishCrypt.cpp CmdLine.cpp Crypto.cpp Dll.cpp FSUtils.cpp \
+            Ftps.cpp FtpsXfer.cpp Log.cpp Service.cpp SiteInfo.cpp Sock.cpp \
+            SSLSock.cpp StrUtils.cpp Termcli.cpp Termsrv.cpp Thr.cpp Timer.cpp
+# IndiFTPD source files
+FILESINDI = IndiFileUtils.cpp IndiFtps.cpp indimain.cpp IndiSiteInfo.cpp
+
+# Set the directory path for the core files
+SRCCORE = $(FILESCORE:%=../core/%)
+# Set the directory path for the IndiFTPD files
+SRCINDI = $(FILESINDI:%=./%)
+
+# Define the core object files.
+OBJCORE = $(SRCCORE:.cpp=.o)
+# Define the IndiFTPD object files.
+OBJINDI = $(SRCINDI:.cpp=.o)
+
+
+# Default target (no arguments to make)
+all: begin checkplatform build
+
+begin:
+ifeq ($(BUILDPLATFORM),NONE)
+	@echo "Usage: make platform=<linux|solaris|freebsd> [opensslroot=PATH]"
+else
+	@echo "Building for" $(platform)
+endif
+
+checkplatform:
+ifeq ($(BUILDPLATFORM),NONE)
+	$(error No platform was specified) 
+endif
+
+build: $(OBJCORE) $(OBJINDI)
+	$(CC) -o $(TARGET) $(OBJCORE) $(OBJINDI) $(LDFLAGS)
+
+# The clean target is used to remove all machine generated files 
+# and start over from a clean slate.
+clean:
+	rm -f $(OBJCORE)
+	rm -f $(OBJINDI)
+	rm -f $(SRCCORE:.cpp=.d)
+	rm -f $(SRCINDI:.cpp=.d)
+	rm -f $(TARGET)
+
+# Compile: create object files from C source files.
+%.o: %.cpp
+	$(CC) -c $(CFLAGS) $< -o $@
+
+# Automatically generate C++ source code dependencies. 
+#
+%.d: %.cpp
+	set -e; $(CC) -MM $(CFLAGS) $< \
+	| sed 's,\(.*\)\.o[ :]*,\1.o \1.d : ,g' > $@; \
+	[ -s $@ ] || rm -f $@
+
+-include $(SRCCORE:.cpp=.d)
+-include $(SRCINDI:.cpp=.d)
